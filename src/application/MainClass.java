@@ -2,15 +2,16 @@ package application;
 
 import java.util.Locale;
 
-import boardgame.Position;
+import chess.ChessMatch;
+import gui.UserInterface;
 
 public class MainClass {
   public static void main(String[] args) {
 	Locale.setDefault(Locale.US);
 	
-	Position pos = new Position(3,5);
+	ChessMatch chessMatch = new ChessMatch(); 
+	UserInterface.printBoard(chessMatch.getPieces()); 
 	
-	System.out.println(pos);
 	
   }
 }
