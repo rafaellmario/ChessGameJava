@@ -12,6 +12,5 @@ public class MainClass {
 	ChessMatch chessMatch = new ChessMatch(); 
 	UserInterface.printBoard(chessMatch.getPieces()); 
 	
-	
   }
 }
