@@ -2,11 +2,15 @@ package application;
 
 import java.util.Locale;
 
+import boardgame.Position;
+
 public class MainClass {
   public static void main(String[] args) {
 	Locale.setDefault(Locale.US);
 	
-	System.out.println("Chess Game ucing Java!");
+	Position pos = new Position(3,5);
+	
+	System.out.println(pos);
 	
   }
 }
