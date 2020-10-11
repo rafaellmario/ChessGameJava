@@ -8,6 +8,7 @@ import chess.ChessPosition;
 import chess.Color;
 
 public class UserInterface {
+// Fields
   // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
   public static final String ANSI_RESET = "\u001B[0m";
   public static final String ANSI_BLACK = "\u001B[30m";
@@ -29,49 +30,63 @@ public class UserInterface {
   public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
   
   public static final String CLEAR_SCREEN = "\033[H\033[2J";
-  
+
+// Methods
   public static void clearScreen() {
-	  System.out.print(CLEAR_SCREEN); 
-	  System.out.flush();
-	  return;
+	System.out.print(CLEAR_SCREEN); 
+	System.out.flush();
+	return;
   }
 
-  public static ChessPosition readChessPosition(Scanner sc) {
-	  
-	  try {
-		  String positionIn = sc.nextLine();
-		  char column = positionIn.charAt(0);
-		  int row = Integer.parseInt(positionIn.substring(1));
-		  return new ChessPosition(column, row);
+  public static ChessPosition readChessPosition(Scanner sc) {  
+    try {
+		 String positionIn = sc.nextLine();
+		 char column = positionIn.charAt(0);
+		 int row = Integer.parseInt(positionIn.substring(1));
+		 return new ChessPosition(column, row);
 	  }
-	  catch(RuntimeException e) {
-		  throw new InputMismatchException("Error reading ChessPosition."
-		  		+ " Valid Values are from a1 to h8!");
-	  }
+	catch(RuntimeException e) {
+		 throw new InputMismatchException("Error reading ChessPosition."
+		           + " Valid Values are from a1 to h8!");
+	}
   }
   
+// Print board
   public static void printBoard(ChessPiece[][] pieces) {
 	for(int i = 0; i<pieces.length; i++) {
 	  System.out.print((8-i)+" ");
-	  for(int j = 0;j<pieces.length; j++) {
-		printPiece(pieces[i][j]);
-	  }
-	  System.out.println();
+	  
+	  for(int j = 0;j<pieces.length; j++)
+		printPiece(pieces[i][j], false);
+	  
+	  System.out.println(); // new line
 	}
 	System.out.println("  a b c d e f g h");
   }
   
-  private static void printPiece(ChessPiece piece) {
-	  if(piece == null)
-	    System.out.print("-");
-	  else if(piece.getColor() == Color.WHITE)
-			System.out.print(ANSI_WHITE + piece + ANSI_RESET);
-		 else
-			 System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
-	  
-	  System.out.print(" ");
-	  
-	  return;
+  public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+	for(int i = 0; i<pieces.length; i++) {
+		System.out.print((8-i)+" ");
+		
+		for(int j = 0;j<pieces.length; j++) 
+		  printPiece(pieces[i][j], possibleMoves[i][j]);
+		 
+		  System.out.println();
+	}
+	System.out.println("  a b c d e f g h");
   }
   
+  private static void printPiece(ChessPiece piece, boolean background) {
+    if(background)
+	  System.out.print(ANSI_BLUE_BACKGROUND);
+    
+	if(piece == null)
+	  System.out.print("-"+ ANSI_RESET);
+	else if(piece.getColor() == Color.WHITE)
+      System.out.print(ANSI_WHITE + piece + ANSI_RESET);
+    else
+	  System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+	  
+	System.out.print(" ");  
+  }
 }
