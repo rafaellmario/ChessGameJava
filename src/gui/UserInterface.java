@@ -44,7 +44,7 @@ public class UserInterface {
 		 char column = positionIn.charAt(0);
 		 int row = Integer.parseInt(positionIn.substring(1));
 		 return new ChessPosition(column, row);
-	  }
+	}
 	catch(RuntimeException e) {
 		 throw new InputMismatchException("Error reading ChessPosition."
 		           + " Valid Values are from a1 to h8!");
