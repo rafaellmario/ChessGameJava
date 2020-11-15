@@ -46,7 +46,7 @@ public class MainClass {
 			
 			if(capturedPiece != null)
 				captured.add(capturedPiece);
-		}
+		 }
 		catch(InputMismatchException e){
 			System.out.print(e.getMessage());
 			sc.nextLine();

@@ -63,6 +63,9 @@ public class UserInterface {
 	  System.out.println();
 	  System.out.println("Turn: "+ chessMatch.getTurn());
 	  System.out.println("Waiting Player: "+ chessMatch.getCurrentPlayer());
+	  
+	  if(chessMatch.getCheck())
+		  System.out.println("CHECK!");
   }
   
 // Print board
