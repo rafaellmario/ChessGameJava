@@ -22,7 +22,7 @@ public class MainClass {
 	
 	Scanner sc = new Scanner(System.in);
 	
-	while(true) {
+	while(!chessMatch.getCheckMate()) {
 		
 		try {
 			UserInterface.clearScreen();
@@ -57,5 +57,7 @@ public class MainClass {
 		}
 		
 	}
+	UserInterface.clearScreen();
+	UserInterface.printMatch(chessMatch, captured);
   }
 }
